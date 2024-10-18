@@ -20,3 +20,19 @@
     background-color: rgb(127, 68, 255) !important;
     color: white !important;
 }
+
+.popover-list {
+    padding: 10px;
+}
+
+.popover-item {
+    display: block;
+    margin-bottom: 5px;
+    text-decoration: none;
+    color: #333;
+}
+
+.popover-item:hover {
+    color: #fff;
+    background-color: rgb(127, 68, 255);
+}

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app/app.component';
@@ -15,6 +15,7 @@ import { DetailProductComponent } from './Components/detail-product/detail-produ
 import { FormsModule } from '@angular/forms';
 import { TokenInterceptor } from './Interceptors/token.interceptor';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [ 
@@ -32,11 +33,13 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule,
-    ReactiveFormsModule
+    // HttpClientModule,
+    ReactiveFormsModule,
+    NgbPopoverModule
   ],
   providers: [
     provideClientHydration(),
+    provideHttpClient(),
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

@@ -30,7 +30,7 @@ export class UserService {
    }
 
    getUserDetail(token: string):Observable<any>{
-    return this.http.post(this.apiUrl + "/details", {
+    return this.http.post(this.apiUrl + "/details", {}, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`
@@ -50,11 +50,26 @@ export class UserService {
     }
    }
 
-   getUserResponse(): UserResponse | null{
-    const userResponseJSON = localStorage.getItem('user');
-    if(userResponseJSON){
+   getUserResponse(): UserResponse | null {
+    try {
+      const userResponseJSON = localStorage.getItem('user');
+      if(userResponseJSON == null || userResponseJSON == undefined){
+        return null;
+      }
       return JSON.parse(userResponseJSON);
     }
-    return null;
+    catch (error) {
+     return null; 
+    }
+   }
+
+   removeUserFromLocalStorage(): void{
+    try {
+      localStorage.removeItem('user');
+      console.log("remove userResponse success");
+    }
+    catch (error) {
+      console.error("Have error when remove userResponse: ", error);
+    }
    }
 }
