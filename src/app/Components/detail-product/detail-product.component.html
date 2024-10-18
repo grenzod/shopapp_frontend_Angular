@@ -1,0 +1,71 @@
+<app-header></app-header>
+<div class="container">
+    <!-- <div class="intro-section">
+        <h2>The Liems Shop</h2>
+    </div> -->
+    <div class="row">
+        <div class="col-md-6">
+            <div id="imgExample" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <!-- <div *ngFor="let image of product?.product_images; let i = index"
+                        class="carousel-item" 
+                        [ngClass]="{ 'active': i === currentImageIndex }">
+                        <div class="square-image">
+                            <img [src]="image.imageUrl" alt="Product Img" class="product-img">
+                        </div>
+                    </div> -->
+                    <div class="square-image">
+                        <img [src]="product?.product_images?.[currentImageIndex]?.imageUrl" 
+                        alt="Product Img" 
+                        class="product-postrait">
+                    </div>
+                    
+                </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#imgExample" data-bs-slide="prev"
+                    (click)="previousImage()">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#imgExample" data-bs-slide="next"
+                    (click)="nextImage()">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+
+            <div class="row">
+                <div class="thumbnail-container">
+                    <div *ngFor="let image of product?.product_images; let i = index" 
+                        class="thumbnail-item"
+                        [ngClass]="{ 'active': i === currentImageIndex }"
+                        (click)="thumbnailClick(i)">
+                        <img [src]="image.imageUrl" alt="Thumbnail Img" class="thumbnail-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="product-details">
+                <h2>Chi tiết sản phẩm</h2>
+                <p>Tên sản phẩm: {{product?.name}}</p>
+                <p>Mô tả sản phẩm: {{product?.description}}</p>
+                <p>Giá: ${{product?.price}}</p>
+
+                <div class="product-actions">
+                    <button class="btn btn-primary" (click)="addToCart()">Thêm vào giỏ hàng</button>
+                    <button class="btn btn-success" (click)="buyNow()">Mua ngay</button>
+                </div>
+
+                <div class="product-quantity">
+                    <div class="border-wrapper">
+                        <button (click)="decreaseQuantity()">-</button>
+                        <input type="text" [value]="quantity">
+                        <button (click)="increaseQuantity()">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

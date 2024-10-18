@@ -1,1 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
+/* Kiểm soát màu nền của các trường đầu vào khi có gợi ý tự động hoàn thành */
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px rgb(12, 12, 55) inset !important; /* Màu nền tùy chỉnh */
+    -webkit-text-fill-color: white !important; /* Màu chữ tùy chỉnh */
+}
+
+/* Kiểm soát màu nền của các trường đầu vào khi có gợi ý tự động hoàn thành trên Firefox */
+input:-moz-autofill {
+    box-shadow: 0 0 0 30px rgb(12, 12, 55) inset !important; /* Màu nền tùy chỉnh */
+    -moz-text-fill-color: white !important; /* Màu chữ tùy chỉnh */
+}
+
+/* Đặt màu nền và màu chữ cho input bình thường */
+input {
+    background-color: rgb(12, 12, 55); /* Màu nền tùy chỉnh */
+    color: white; /* Màu chữ */
+}
+
+/* Kiểm soát màu nền và màu chữ khi input được focus */
+input:focus {
+    background-color: rgb(12, 12, 55); /* Màu nền tùy chỉnh */
+    color: white; /* Màu chữ */
+    outline: none; /* Bỏ viền outline mặc định */
+}
+
+/* Kiểm soát màu nền và màu chữ cho các trường mật khẩu */
+input[type="password"] {
+    background-color: rgb(12, 12, 55); /* Màu nền tùy chỉnh */
+    color: white; /* Màu chữ */
+}
+
+/* Kiểm soát màu nền và màu chữ khi input mật khẩu được focus */
+input[type="password"]:focus {
+    background-color: rgb(12, 12, 55); /* Màu nền tùy chỉnh */
+    color: white; /* Màu chữ */
+    outline: none; /* Bỏ viền outline mặc định */
+}

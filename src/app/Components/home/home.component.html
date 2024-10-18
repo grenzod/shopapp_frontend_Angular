@@ -1,0 +1,63 @@
+<app-header></app-header>
+<div class="container">
+    <div class="intro-section">
+        <h3>Cửa hàng Lego</h3>
+        <p>Kính chào quý khách</p>
+    </div>
+
+    <!-- Đoạn này có 1 ô search box, 1 ô combo box -->
+    <div class="search-box">
+        <input type="text" class="form-control search-input" 
+            placeholder="Tìm sản phẩm"
+            [(ngModel)] = "keyword"
+            name="keyword">
+
+        <select class="form-control product-category"
+            [(ngModel)] = "selectCategoryId"
+            name="selectCategoryId">
+            <!-- <option selected disabled>Chọn sản phẩm</option> -->
+            <option [value]="0">All</option>
+            <option *ngFor="let category of categories" [value]="category.id">
+                {{category.name}}
+            </option>
+        </select>
+        <button class="btn btn-primary search-button" (click)="onSearchProducts()">Search</button>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-md-6" *ngFor="let product of products">
+            <div class="product-item" (click)="onProductClick(product.id)">
+                <img [src]="product.url"
+                    alt="Product Img" 
+                    class="product-img">
+                <h2 class="product-name">{{product.name}}</h2>
+                <p class="product-description">{{product.description}}</p>
+                <p class="product-price">Sale: {{product.price}}$</p>
+                <div class="product-rating">
+                    <i class="fa-sharp fa-solid fa-star"></i>
+                    <i class="fa-sharp fa-solid fa-star"></i>
+                    <i class="fa-sharp fa-solid fa-star"></i>
+                    <i class="fa-sharp fa-solid fa-star"></i>
+                    <i class="fa-sharp fa-solid fa-star"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="d-flex justify-content-center">
+    <nav>
+        <ul class="pagination">
+            <li class="page-item" *ngIf="currentPage > 0">
+                <a class="page-link" href="#" (click)="onPageChange(currentPage - 1)">Previous</a>
+            </li>
+            <ng-container *ngFor="let page of visiblePage">
+                <li class="page-item" [ngClass]="{ 'active': page === currentPage }">
+                    <a class="page-link" href="#" (click)="onPageChange(page)">{{ page }}</a>
+                </li>
+            </ng-container>
+            <li class="page-item" *ngIf="currentPage < totalPages">
+                <a class="page-link" href="#" (click)="onPageChange(currentPage + 1)">Next</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+<app-footer></app-footer>
