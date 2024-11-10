@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   selectCategoryId: number = 0;
   products: Product[] = [];
   currentPage: number = 0;
-  itemsPerPage: number = 10;
+  itemsPerPage: number = 12;
   pages: number[] = [];
   totalPages: number = 0;
   visiblePage: number[] = [];
@@ -42,11 +42,9 @@ export class HomeComponent implements OnInit {
   getCategories(page: number, limit: number) {
     this.categoryService.getCategories(page, limit).subscribe({
       next: (response: any) => {
-        debugger
         this.categories = response;
       },
       complete: () => {
-        debugger
       },
       error: (err: any) => {
         console.error('Error getting categories: ', err);
@@ -57,7 +55,6 @@ export class HomeComponent implements OnInit {
   getProducts(keyword: string, selectCategoryId: number, page: number, limit: number) {
     this.productService.getProducts(keyword, selectCategoryId, page, limit).subscribe({
       next: (response: any) => {
-        debugger
         response.products.forEach((product: Product) => {
           if(product.thumbnail == "") {
             product.thumbnail = "null";
@@ -69,17 +66,14 @@ export class HomeComponent implements OnInit {
         this.visiblePage = this.generateVisiblePage(this.currentPage, this.totalPages);
       },
       complete: () => {
-        debugger
       },
       error: (err: any) => {
-        debugger
         console.error('Error getting products: ', err);
       }
     });
   }
 
   onPageChange(page: number) {
-    debugger
     this.currentPage = page;
     this.getProducts(this.keyword, this.selectCategoryId, this.currentPage, this.itemsPerPage);
   }
@@ -99,14 +93,12 @@ export class HomeComponent implements OnInit {
   }
   
   onSearchProducts() {
-    debugger
     this.currentPage = 0;
     this.itemsPerPage = 10;
     this.getProducts(this.keyword, this.selectCategoryId, this.currentPage, this.itemsPerPage);
   }
 
   onProductClick(productId: number){
-    debugger
     this.router.navigate(['/products', productId]);
   }
 }

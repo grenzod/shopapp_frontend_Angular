@@ -1,3 +1,5 @@
+@import '../../styles/shared-styles.scss';
+
 .container {
     color: white;
     padding: 20px; /* Thêm khoảng cách để nội dung không sát viền */
@@ -56,7 +58,7 @@ td {
 }
 
 .btn-gradient {
-    background: linear-gradient(to right, rgb(225, 64, 180), rgb(126, 43, 237));
+    background: linear-gradient(to right, rgb(225, 64, 180), $shopapp-color);
     color: white;
     border-radius: 30px;
     width: 200px;
@@ -67,5 +69,5 @@ td {
 }
 
 .btn-gradient:hover {
-    background: linear-gradient(to right, rgb(126, 43, 237), rgb(225, 64, 180)); /* Đảo ngược màu khi hover */
+    background: linear-gradient(to right, $shopapp-color, rgb(225, 64, 180)); /* Đảo ngược màu khi hover */
 }

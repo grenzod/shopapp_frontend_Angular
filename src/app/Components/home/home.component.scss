@@ -1,3 +1,5 @@
+@import '../../styles/shared-styles.scss';
+
 .intro-section {
     text-align: center;
     color: white;
@@ -8,6 +10,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.product-category {
+    width: 200px;
 }
 
 .search-input {
@@ -34,10 +40,6 @@
 
 .form-control::-ms-input-placeholder {
     color: rgba(255, 255, 255, 0.5);
-}
-
-.product-category {
-    width: 200px;
 }
 
 .product-item {
@@ -79,4 +81,10 @@
 
 .spaces {
     margin: 0 10px;
+}
+
+.btn-primary {
+    background-color: $shopapp-color;
+    border-color: $shopapp-color;
+    margin-left: 10px;
 }

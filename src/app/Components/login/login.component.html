@@ -14,8 +14,8 @@
                             (focus)="loginForm.form.markAllAsTouched()"
                             id="email">
                         <div class="divider-nospace"></div>
-                        <p class="text-danger" *ngIf="phone.length < 10 && loginForm.form.touched"> 
-                            The length of your phone must be at least 10 characters</p>
+                        <p class="text-danger" *ngIf="phone.length != 10 && loginForm.form.touched"> 
+                            Số điện thoại không hợp lệ !!</p>
                     </div>
     
                     <div class="mt-5"></div>
