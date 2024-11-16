@@ -35,6 +35,11 @@ export class CartService {
     }
   }
 
+  deleteById(id: number): void {
+    this.cart.delete(id);
+    this.saveCartLocalStorage();
+  }
+
   clearCart(): void {
     this.cart.clear();
     this.saveCartLocalStorage();

@@ -15,7 +15,7 @@ export class AuthGuard {
         if (!isExpired && isUserIdValid) {
             return true;
         } else {
-            alert('Please login !!');
+            alert('Làm ơn đăng nhập !!');
             this.router.navigate(['/login']);
             return false;
         }

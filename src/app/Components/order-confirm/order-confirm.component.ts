@@ -36,7 +36,7 @@ export class OrderConfirmComponent implements OnInit {
 
   getOrderDetails(): void {
     debugger
-    const orderId = 19;
+    const orderId = 21;
     this.orderService.getOrderById(orderId).subscribe({
       next: (response: any) => {
         debugger

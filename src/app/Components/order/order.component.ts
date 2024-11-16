@@ -127,4 +127,9 @@ export class OrderComponent {
   applyCoupon(): void {
     // Apply coupon logic here
   }
+
+  removeFromCart(id: number): void {
+    this.cartService.deleteById(id);
+    window.location.reload();
+  }
 }

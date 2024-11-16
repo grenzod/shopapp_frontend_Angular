@@ -38,7 +38,9 @@
                 <ng-container *ngIf="userResponse">
                   <ng-container ngbPopover="popoverContent" popoverTitle="User Actions" triggers="click"
                     [placement]="'bottom'">
-                    <a class="nav-link" [ngbPopover]="popoverContent">
+                    <a class="nav-link" [ngbPopover]="popoverContent"
+                    [ngClass]="{ 'active': activeNavItem === 3 }"
+                    (click)="setActiveNavItem(3)">
                       {{ userResponse.full_name }}
                     </a>
                     <ng-template #popoverContent>

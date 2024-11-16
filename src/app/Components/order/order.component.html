@@ -98,9 +98,13 @@
                                         <span class="product-name">{{item.product.name}}</span>
                                     </div>
                                 </td>
-                                <td>{{item.product.price | currency:'$': 'symbol': '1.0-0'}}</td>
                                 <td>{{item.quantity}}</td>
+                                <td>{{item.product.price | currency:'$': 'symbol': '1.0-0'}}</td>
                                 <td>{{item.product.price * item.quantity | currency:'$': 'symbol': '1.0-0'}}$</td>
+
+                                <td>
+                                    <button class="btn btn-danger" type="button" (click)="removeFromCart(item.product.id)">Xóa</button>
+                                </td>
                             </tr>
                         </ng-container>
                     </tbody>

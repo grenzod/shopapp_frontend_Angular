@@ -43,7 +43,6 @@ export class HeaderComponent implements OnInit {
     if(id == 1){
       const userId = this.tokenService.getUserId();
       this.router.navigate(['/orders', userId]);
-      this.setActiveNavItem(1);
     }
     if(id == 2){
       this.userService.removeUserFromLocalStorage();
@@ -51,7 +50,6 @@ export class HeaderComponent implements OnInit {
       this.tokenService.removeToken();
       this.userResponse = this.userService.getUserResponse();
       this.router.navigate(['/']);
-      this.setActiveNavItem(2);
     }
     this.isPopoverOpen = false;
   }

@@ -4,7 +4,7 @@ import { ProductService } from '../../service/product.service';
 import { environment } from '../../Environments/environment';
 import { ProductImage } from '../../Models/product.image';
 import { CartService } from '../../service/cart.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-detail-product',
@@ -19,7 +19,9 @@ export class DetailProductComponent implements OnInit{
 
   constructor(private productService: ProductService, 
               private cartService: CartService,
-              private route: ActivatedRoute) {}
+              private route: ActivatedRoute,
+              private router: Router
+            ) {}
   ngOnInit() {
     debugger
     // this.cartService.clearCart();
@@ -100,7 +102,7 @@ export class DetailProductComponent implements OnInit{
       this.cartService.addToCart(this.product.id, this.quantity);
     }
     else{
-      console.error("Can not add product because null !!");
+      console.error("Không thể thêm sản phẩm bởi vì null !!");
     }
   }
 
@@ -112,6 +114,12 @@ export class DetailProductComponent implements OnInit{
       this.quantity--;
   }
   buyNow(): void{
-
+    if(this.product){
+      this.cartService.addToCart(this.product.id, 1);
+      this.router.navigate(['/orders']);
+    }
+    else{
+      console.error("Không thể mua ngay sản phẩm bởi vì null !!");
+    }
   }
 }
