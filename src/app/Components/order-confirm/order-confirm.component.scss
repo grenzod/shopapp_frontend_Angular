@@ -71,3 +71,14 @@ td {
 .btn-gradient:hover {
     background: linear-gradient(to right, $shopapp-color, rgb(225, 64, 180)); /* Đảo ngược màu khi hover */
 }
+
+.order-divider {
+    margin: 30px 0;
+    border: none;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.5); /* Đường kẻ phân cách giữa các đơn hàng */
+}
+
+tbody .product-row {
+    border-top: 1px solid rgba(255, 255, 255, 0.2); /* Đường kẻ phân cách giữa các sản phẩm */
+}

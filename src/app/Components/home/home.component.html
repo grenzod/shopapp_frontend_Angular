@@ -23,6 +23,7 @@
         </select>
         <button class="btn btn-primary search-button" (click)="onSearchProducts()">Search</button>
     </div>
+    
     <div class="row">
         <div class="col-lg-4 col-md-6" *ngFor="let product of products">
             <div class="product-item" (click)="onProductClick(product.id)">
