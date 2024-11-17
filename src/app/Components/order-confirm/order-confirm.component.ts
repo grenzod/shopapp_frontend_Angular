@@ -19,6 +19,7 @@ export class OrderConfirmComponent implements OnInit {
 
   ngOnInit(): void {
     this.getOrderByUserId();
+    localStorage.setItem('idP', '4');
   }
 
   getOrderByUserId(): void {

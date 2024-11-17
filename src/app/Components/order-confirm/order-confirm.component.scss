@@ -79,6 +79,9 @@ td {
     background-color: rgba(255, 255, 255, 0.5); /* Đường kẻ phân cách giữa các đơn hàng */
 }
 
-tbody .product-row {
-    border-top: 1px solid rgba(255, 255, 255, 0.2); /* Đường kẻ phân cách giữa các sản phẩm */
+.order-info {
+    flex: 1;
+    min-width: 300px;
+    border-right: 1px solid rgba(255, 255, 255, 0.5); /* Viền giữa hai bảng */
+    padding-right: 10px;
 }

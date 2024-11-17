@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { UserService } from '../../service/user.service';
 import { UserResponse } from '../../Responses/userResponse';
 import { CartService } from '../../service/cart.service';
 import { TokenService } from '../../service/token.service';
 import { Router } from '@angular/router';
 import e from 'express';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -15,20 +16,25 @@ export class HeaderComponent implements OnInit {
   userResponse?: any;
   isPopoverOpen = false;
   activeNavItem: number = 2;
+  admin: boolean = false;
 
   constructor(private userService: UserService, 
               private cartService: CartService, 
               private tokenService: TokenService,
-              private router: Router
+              private router: Router,
+              @Inject(PLATFORM_ID) private platformId: Object
             ) { }
 
   ngOnInit(): void {
     this.userResponse = this.userService.getUserResponse();
-    const ans = localStorage.getItem('idP');
-    if(ans != null){
-      this.activeNavItem = Number(ans);
+    if (isPlatformBrowser(this.platformId)) {
+      const ans = localStorage.getItem('idP');
+      this.activeNavItem = ans ? Number(ans) : 0;
     }
-    else this.activeNavItem = 0;
+    const roleId = this.tokenService.getRoleId();
+    if(roleId == 2){
+      this.admin = true;
+    }
   }
 
   togglePopover(event: Event): void {
@@ -48,8 +54,8 @@ export class HeaderComponent implements OnInit {
       this.userService.removeUserFromLocalStorage();
       this.cartService.clearCart();
       this.tokenService.removeToken();
-      this.userResponse = this.userService.getUserResponse();
       this.router.navigate(['/']);
+      window.location.reload();
     }
     this.isPopoverOpen = false;
   }

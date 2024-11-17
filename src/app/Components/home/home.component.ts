@@ -36,6 +36,7 @@ export class HomeComponent implements OnInit {
     // this.tokenService.removeToken();
     this.getCategories(this.currentPage, this.itemsPerPage);
     this.getProducts(this.keyword, this.selectCategoryId, this.currentPage, this.itemsPerPage);
+    localStorage.setItem('idP', '0');
     // this.tokenService.removeToken();
   }
 

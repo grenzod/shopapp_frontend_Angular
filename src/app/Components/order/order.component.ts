@@ -58,7 +58,6 @@ export class OrderComponent {
 
     const cart = this.cartService.getCart();
     const productIds = Array.from(cart.keys());
-  
     if (productIds.length === 0) {
       return; 
     }

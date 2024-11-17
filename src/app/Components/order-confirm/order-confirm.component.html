@@ -1,14 +1,14 @@
 <app-header></app-header>
 <div class="container">
     <div class="intro-section">
-        <h1>Shop Liems Order Confirm</h1>
+        <h1>Đơn mua của tôi</h1>
     </div>
 
     <div>
         <div *ngFor="let order of response" class="order-section">
             <div *ngIf="order" class="row order-card">
                 <!-- Thông tin người nhận -->
-                <div class="col-md-6 order-info">
+                <div class="col-md-4 order-info">
                     <h2 class="product-header">Thông tin người nhận</h2>
                     <div class="info-box">
                         <p><strong>Họ và tên:</strong> {{order.full_name}}</p>
@@ -22,7 +22,7 @@
                 </div>
     
                 <!-- Chi tiết đơn hàng -->
-                <div class="col-md-6 order-details">
+                <div class="col-md-8 order-details">
                     <h2 class="product-order">Chi tiết đơn hàng</h2>
                     <table>
                         <thead>
