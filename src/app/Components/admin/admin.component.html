@@ -1,0 +1,41 @@
+<app-header></app-header>
+
+<div class="container-fluid">
+  <div class="row">
+    <!-- Sidebar -->
+    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+      <div class="position-sticky">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="#">
+              <i class="fas fa-home"></i> Dashboard
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="GoToComponent('user')">
+              <i class="fas fa-users"></i> Quản lý người dùng
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="GoToComponent('product')">
+              <i class="fas fa-box"></i> Quản lý sản phẩm
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="GoToComponent('order')">
+              <i class="fas fa-shopping-cart"></i> Quản lý đơn hàng
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="col-md-10 col-lg-10 overflow-auto">
+      <ng-container [ngSwitch]="adminComponent">
+        <app-order-admin *ngSwitchCase="'order'"></app-order-admin>
+        <app-user-admin *ngSwitchCase="'user'"></app-user-admin>
+        <app-product-admin *ngSwitchCase="'product'"></app-product-admin>
+      </ng-container>
+    </div>
+  </div>
+</div>

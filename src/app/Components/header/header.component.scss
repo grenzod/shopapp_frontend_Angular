@@ -1,8 +1,8 @@
 @import '../../styles/shared-styles.scss';
 
 .header {
-    background-color: rgba(0, 0, 0, 0);
-    color: rgb(173, 178, 203);
+    background: linear-gradient(to right, rgb(31, 41, 105), rgb(67, 51, 125)) !important;
+    color: rgb(173, 178, 203) !important;
 }
 .navbar {
     background-color: rgba(0, 0, 0, 0) !important;
@@ -23,6 +23,7 @@
     color: white !important;
 }
 
+// popver
 .popover-list {
     padding: 10px;
 }

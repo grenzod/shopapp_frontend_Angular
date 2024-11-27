@@ -1,0 +1,77 @@
+<div class="container">
+    <div class="intro-section">
+        <h1>Order Admin Page</h1>
+    </div>
+
+    <div>
+        <div *ngFor="let order of orderResponses" class="order-section">
+            <div *ngIf="order" class="row order-card">
+                <!-- Thông tin người nhận -->
+                <div class="col-md-4 order-info">
+                    <h2 class="product-header">Thông tin người nhận</h2>
+                    <div class="info-box">
+                        <p><strong>Họ và tên:</strong> {{order.full_name}}</p>
+                        <p><strong>Email:</strong> {{order.email}}</p>
+                        <p><strong>Địa chỉ:</strong> {{order.address}}</p>
+                        <p><strong>Số điện thoại:</strong> {{order.phone_number}}</p>
+                        <p><strong>Ghi chú:</strong> {{order.note}}</p>
+                        <p><strong>Phương thức vận chuyển:</strong> {{order.shipping_method}}</p>
+                        <p><strong>Phương thức thanh toán:</strong> {{order.payment_method}}</p>
+                    </div>
+                </div>
+    
+                <!-- Chi tiết đơn hàng -->
+                <div class="col-md-8 order-details">
+                    <h2 class="product-order">Chi tiết đơn hàng</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th scope="col" class="text-start">Sản phẩm</th>
+                                <th scope="col">Đơn giá</th>
+                                <th scope="col">Số lượng</th>
+                                <th scope="col">Tổng giá</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ng-container *ngFor="let item of order.order_details">
+                                <tr class="product-row">
+                                    <td>
+                                        <div class="product-infor">
+                                            <img [src]="item.product.thumbnail" alt="Product Img" class="product-img">
+                                            <span class="product-name">{{item.product.name}}</span>
+                                        </div>
+                                    </td>
+                                    <td>{{item.product.price | currency:'$': 'symbol': '1.0-0'}}</td>
+                                    <td>{{item.numberOfProducts}}</td>
+                                    <td>{{item.product.price * item.numberOfProducts | currency:'$': 'symbol': '1.0-0'}}</td>
+                                </tr>
+                            </ng-container>
+                        </tbody>
+                    </table>
+                    <div class="text-start mt-3">
+                        <h4 class="header-text text-end">Tổng tiền: {{order.total_money | currency:'$': 'symbol': '1.0-0'}}</h4>
+                    </div>
+                </div>
+            </div>
+            <hr class="order-divider"> <!-- Đường kẻ phân cách giữa các đơn hàng -->
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center">
+        <nav>
+            <ul class="pagination">
+                <li class="page-item" *ngIf="currentPage > 0">
+                    <a class="page-link" (click)="onPageChange(currentPage - 1)">Previous</a>
+                </li>
+                <ng-container *ngFor="let page of visiblePage">
+                    <li class="page-item" [ngClass]="{ 'active': page === currentPage }">
+                        <a class="page-link" (click)="onPageChange(page)">{{ page }}</a>
+                    </li>
+                </ng-container>
+                <li class="page-item" *ngIf="currentPage < totalPages">
+                    <a class="page-link" (click)="onPageChange(currentPage + 1)">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>

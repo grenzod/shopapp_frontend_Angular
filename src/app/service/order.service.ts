@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "../Environments/environment";
 import { OrderDTO } from "../DTOs/order/order.DTO";
@@ -24,5 +24,14 @@ export class OrderService {
 
     getOrdersByUserId(userId: number): Observable<OrderResponse[]>{
         return this.http.get<OrderResponse[]>(`${this.apiGetProducts}/user/${userId}`);
+    }
+
+    getOrders(key: string, page: number, limit: number): Observable<OrderResponse[]>{
+        const params = new HttpParams()
+        .set('key', key)
+        .set('page', page.toString())
+        .set('limit', limit.toString());
+
+        return this.http.get<OrderResponse[]>(`${this.apiGetProducts}/get-ordes-by-key`, { params });
     }
 }

@@ -4,7 +4,6 @@ import { UserResponse } from '../../Responses/userResponse';
 import { CartService } from '../../service/cart.service';
 import { TokenService } from '../../service/token.service';
 import { Router } from '@angular/router';
-import e from 'express';
 import { isPlatformBrowser } from '@angular/common';
 
 @Component({
@@ -51,16 +50,18 @@ export class HeaderComponent implements OnInit {
       this.router.navigate(['/orders', userId]);
     }
     if(id == 2){
+      this.router.navigate(['/']);
       this.userService.removeUserFromLocalStorage();
       this.cartService.clearCart();
       this.tokenService.removeToken();
-      this.router.navigate(['/']);
       window.location.reload();
     }
     this.isPopoverOpen = false;
   }
 
   setActiveNavItem(id: number){
-    localStorage.setItem('idP', id.toString());
+    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+      localStorage.setItem('idP', id.toString());
+    }
   }
 }

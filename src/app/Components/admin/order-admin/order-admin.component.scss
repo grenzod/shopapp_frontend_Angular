@@ -1,0 +1,87 @@
+@import '../../../styles/shared-styles.scss';
+
+.container {
+    color: white;
+    padding: 20px; /* Thêm khoảng cách để nội dung không sát viền */
+}
+
+.intro-section {
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-radius: 10px;
+    border-collapse: collapse;
+    border: 1px solid white; /* Giữ viền cho bảng */
+    background-color: rgba(12, 13, 54, 0.9); /* Thay Orgb thành rgba để có độ trong suốt */
+    margin-bottom: 20px; /* Thêm khoảng cách dưới bảng */
+    border: none;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    border: none;
+}
+
+th {
+    background-color: rgba(225, 64, 180, 0.8); /* Màu nền cho tiêu đề bảng */
+    color: white;
+    border-top-left-radius: 10px; /* Bo góc cho tiêu đề */
+    border-top-right-radius: 10px;
+}
+
+td {
+    color: white; /* Màu chữ cho ô dữ liệu */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Thêm viền nhẹ cho ô dữ liệu */
+}
+
+.product-infor {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px; /* Thêm khoảng cách giữa các sản phẩm */
+}
+
+.product-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.product-name {
+    color: white;
+    margin-right: 10px;
+}
+
+.btn-gradient {
+    background: linear-gradient(to right, rgb(225, 64, 180), $shopapp-color);
+    color: white;
+    border-radius: 30px;
+    width: 200px;
+    padding: 10px; /* Thêm khoảng cách cho nút */
+    border: none; /* Bỏ viền cho nút */
+    cursor: pointer; /* Thay đổi con trỏ khi hover */
+    transition: background 0.3s; /* Thêm hiệu ứng chuyển tiếp */
+}
+
+.btn-gradient:hover {
+    background: linear-gradient(to right, $shopapp-color, rgb(225, 64, 180)); /* Đảo ngược màu khi hover */
+}
+
+.order-divider {
+    margin: 30px 0;
+    border: none;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.5); /* Đường kẻ phân cách giữa các đơn hàng */
+}
+
+.order-info {
+    flex: 1;
+    min-width: 300px;
+    border-right: 1px solid rgba(255, 255, 255, 0.5); /* Viền giữa hai bảng */
+    padding-right: 10px;
+}

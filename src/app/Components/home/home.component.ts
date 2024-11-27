@@ -1,12 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
 import { ProductService } from '../../service/product.service';
 import { Product } from '../../Models/product';
 import { Router } from '@angular/router';
 import { environment } from '../../Environments/environment';
 import { Category } from '../../Models/category';
 import { CategoryService } from '../../service/category.service';
-import { TokenService } from '../../service/token.service';
-import { CartService } from '../../service/cart.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -27,17 +26,16 @@ export class HomeComponent implements OnInit {
   constructor(private productService: ProductService, 
               private categoryService: CategoryService,
               private router: Router,
-              private tokenService: TokenService,
-              private cartService: CartService
+              @Inject(PLATFORM_ID) private platformId: Object
             ) { }
 
   ngOnInit() {
-    // this.cartService.clearCart();
-    // this.tokenService.removeToken();
     this.getCategories(this.currentPage, this.itemsPerPage);
     this.getProducts(this.keyword, this.selectCategoryId, this.currentPage, this.itemsPerPage);
-    localStorage.setItem('idP', '0');
-    // this.tokenService.removeToken();
+
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('idP', '0');
+    }
   }
 
   getCategories(page: number, limit: number) {

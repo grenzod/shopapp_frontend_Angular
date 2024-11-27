@@ -1,4 +1,4 @@
-<header>
+<header class="header">
   <nav class="navbar navbar-expand-lg navbar-dark bg-light">
     <div class="container">
       <a class="navbar-brand" href="#">ShopLiems</a>
@@ -6,6 +6,7 @@
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
@@ -27,7 +28,7 @@
             <li class="nav-item">
               <a class="nav-link" [ngClass]="{ 'active': activeNavItem === 3 }" 
                 (click)="setActiveNavItem(3)"
-                routerLink="/"><i class="fa-solid fa-crown">Admin</i></a>
+                routerLink="/admin"><i class="fa-solid fa-crown">Admin</i></a>
             </li>
           </div>
         </ul>
