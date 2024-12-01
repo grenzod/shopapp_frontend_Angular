@@ -1,1 +1,58 @@
-<p>product-admin works!</p>
+<div class="container">
+    <div class="intro-section">
+        <h1>Product Admin Page</h1>
+    </div>
+
+    <div class="add-category-section">
+        <input type="text" 
+                class="form-control add-category-input" 
+                placeholder="Nhập loại sản phẩm muốn thêm mới">
+        <button class="btn btn-primary add-category-button" (click)="addCategory()">Thêm</button>
+    </div>
+
+    <div class="row">
+        <!-- Image Upload Section -->
+        <div class="col-md-6">
+            <div class="image-frame">
+                <img *ngIf="selectedFileUrl; else placeholder" [src]="selectedFileUrl" alt="Product Img" class="product-img img-fluid">
+                <ng-template #placeholder>
+                    <div class="placeholder-frame">
+                        <p>Hình ảnh sản phẩm</p>
+                    </div>
+                </ng-template>
+            </div>
+            <h3 class="section-title">Tải lên ảnh sản phẩm</h3>
+            <form class="upload-form" (ngSubmit)="addImage($event)">
+                <input type="file" (change)="onFileSelected($event)" class="form-control file-input" />
+                <button type="button" class="btn btn-secondary" (click)="addImage($event)">Thêm ảnh</button>
+            </form>
+        </div>
+
+        <!-- Product Addition Section -->
+        <div class="col-md-6">
+            <h3 class="section-title">Thêm sản phẩm mới</h3>
+            <div class="form-group">
+                <label for="select-category">Loại sản phẩm</label>
+                <select class="form-control" [(ngModel)]="product.category_id" name="selectCategoryId">
+                    <option [value]="0">Chọn Loại sản phẩm</option>
+                    <option *ngFor="let category of categories" [value]="category.id">
+                        {{category.name}}
+                    </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="product-name">Tên sản phẩm</label>
+                <input type="text" id="product-name" class="form-control" [(ngModel)]="product.name" required>
+            </div>
+            <div class="form-group">
+                <label for="product-price">Giá sản phẩm</label>
+                <input type="text" id="product-price" class="form-control" [(ngModel)]="product.price" required>
+            </div>
+            <div class="form-group">
+                <label for="product-description">Mô tả sản phẩm</label>
+                <textarea id="product-description" class="form-control" [(ngModel)]="product.description" rows="4" required></textarea>
+            </div>
+            <button class="btn btn-primary btn-add-product" (click)="addProduct()">Thêm sản phẩm</button>
+        </div>
+    </div>
+</div>

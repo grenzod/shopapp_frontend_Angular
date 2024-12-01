@@ -100,7 +100,7 @@ export class OrderComponent {
       this.orderService.placeOrder(this.orderData).subscribe({
         next: (response: any) => {
           debugger;
-          alert('Order placed successfully:');
+          alert('Đặt hàng thành công !!');
           this.cartService.clearCart();
           this.router.navigate(['']);
         },
@@ -113,6 +113,9 @@ export class OrderComponent {
           console.error('Error getting : ', err);
         }
       });
+    }
+    else{
+      window.alert('Bạn không được nhập thiếu thông tin');
     }
   }
 

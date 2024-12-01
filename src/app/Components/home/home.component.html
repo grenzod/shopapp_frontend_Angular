@@ -1,54 +1,54 @@
 <app-header></app-header>
 <div class="container">
     <div class="intro-section">
-        <h3>ShopLiems</h3>
-        <p>Kính chào quý khách</p>
+        <h1>ShopLiems</h1>
+        <p>Kính chào quý khách, tận hưởng mua sắm!</p>
     </div>
 
-    <!-- Đoạn này có 1 ô search box, 1 ô combo box -->
+    <!-- Search Box -->
     <div class="search-box">
-        <input type="text" class="form-control search-input" 
-            placeholder="Tìm sản phẩm"
-            [(ngModel)] = "keyword"
-            name="keyword">
-
-        <select class="form-control product-category"
-            [(ngModel)] = "selectCategoryId"
-            name="selectCategoryId">
-            <!-- <option selected disabled>Chọn sản phẩm</option> -->
-            <option [value]="0">All</option>
+        <input type="text" 
+                class="form-control search-input" 
+                placeholder="Tìm sản phẩm" 
+                [(ngModel)]="keyword" 
+                name="keyword">
+        <select class="form-control product-category" [(ngModel)]="selectCategoryId" name="selectCategoryId">
+            <option [value]="0">Tất cả sản phẩm</option>
             <option *ngFor="let category of categories" [value]="category.id">
                 {{category.name}}
             </option>
         </select>
-        <button class="btn btn-primary search-button" (click)="onSearchProducts()">Search</button>
+        <button class="btn btn-primary search-button" (click)="onSearchProducts()">Tìm kiếm</button>
     </div>
-    
-    <div class="row">
+
+    <!-- Products -->
+    <div class="row product-list">
         <div class="col-lg-4 col-md-6" *ngFor="let product of products">
             <div class="product-item" (click)="onProductClick(product.id)">
-                <img [src]="product.url"
-                    alt="Product Img" 
-                    class="product-img">
-                <h2 class="product-name">{{product.name}}</h2>
-                <p class="product-description">{{product.description}}</p>
-                <p class="product-price">Sale: {{product.price}}$</p>
-                <div class="product-rating">
-                    <i class="fa-sharp fa-solid fa-star"></i>
-                    <i class="fa-sharp fa-solid fa-star"></i>
-                    <i class="fa-sharp fa-solid fa-star"></i>
-                    <i class="fa-sharp fa-solid fa-star"></i>
-                    <i class="fa-sharp fa-solid fa-star"></i>
+                <img [src]="product.url" alt="Product Image" class="product-img">
+                <div class="product-info">
+                    <h2 class="product-name">
+                        {{product.name}}
+                    </h2>
+                    <p class="product-description">
+                        {{product.description}}
+                    </p>
+                    <p class="product-price">Giá: {{product.price | currency:'USD'}}</p>
+                    <div class="product-rating">
+                        <i *ngFor="let star of [1,2,3,4,5]" class="fa-sharp fa-solid fa-star"></i>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="d-flex justify-content-center">
+
+<!-- Pagination -->
+<div class="pagination-container">
     <nav>
         <ul class="pagination">
             <li class="page-item" *ngIf="currentPage > 0">
-                <a class="page-link" href="#" (click)="onPageChange(currentPage - 1)">Previous</a>
+                <a class="page-link" href="#" (click)="onPageChange(currentPage - 1)">Trước</a>
             </li>
             <ng-container *ngFor="let page of visiblePage">
                 <li class="page-item" [ngClass]="{ 'active': page === currentPage }">
@@ -56,7 +56,7 @@
                 </li>
             </ng-container>
             <li class="page-item" *ngIf="currentPage < totalPages">
-                <a class="page-link" href="#" (click)="onPageChange(currentPage + 1)">Next</a>
+                <a class="page-link" href="#" (click)="onPageChange(currentPage + 1)">Tiếp</a>
             </li>
         </ul>
     </nav>
