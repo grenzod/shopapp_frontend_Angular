@@ -5,13 +5,13 @@
 
     <div class="add-category-section">
         <input type="text" 
+                [(ngModel)]="category.name"
                 class="form-control add-category-input" 
                 placeholder="Nhập loại sản phẩm muốn thêm mới">
         <button class="btn btn-primary add-category-button" (click)="addCategory()">Thêm</button>
     </div>
 
     <div class="row">
-        <!-- Image Upload Section -->
         <div class="col-md-6">
             <div class="image-frame">
                 <img *ngIf="selectedFileUrl; else placeholder" [src]="selectedFileUrl" alt="Product Img" class="product-img img-fluid">
@@ -28,7 +28,6 @@
             </form>
         </div>
 
-        <!-- Product Addition Section -->
         <div class="col-md-6">
             <h3 class="section-title">Thêm sản phẩm mới</h3>
             <div class="form-group">

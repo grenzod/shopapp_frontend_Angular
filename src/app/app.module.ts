@@ -20,6 +20,7 @@ import { AdminComponent } from './Components/admin/admin.component';
 import { OrderAdminComponent } from './Components/admin/order-admin/order-admin.component';
 import { ProductAdminComponent } from './Components/admin/product-admin/product-admin.component';
 import { UserAdminComponent } from './Components/admin/user-admin/user-admin.component';
+import { AuthCallbackComponent } from './Components/auth-callback/auth-callback.component';
 
 @NgModule({
   declarations: [ 
@@ -43,7 +44,8 @@ import { UserAdminComponent } from './Components/admin/user-admin/user-admin.com
     FormsModule,
     // HttpClientModule,
     ReactiveFormsModule,
-    NgbPopoverModule
+    NgbPopoverModule,
+    AuthCallbackComponent 
   ],
   providers: [
     provideClientHydration(),

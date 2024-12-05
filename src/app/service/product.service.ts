@@ -29,6 +29,15 @@ export class ProductService {
         const params = new HttpParams()
             .set('ids', productIds.join(','));
         return this.http.get<Product[]>(`${this.apiGetProducts}/by-ids`, { params });
-      }
+    }
       
+    addProduct(product: Product): Observable<Product> {
+        return this.http.post<Product>(this.apiGetProducts, product);
+    }
+
+    addImage(productId: number, file: File): Observable<string> {
+        const formData = new FormData();
+        formData.append('file', file, file.name);
+        return this.http.post<string>(`${this.apiGetProducts}/uploads/${productId}`, formData);
+    }
 }

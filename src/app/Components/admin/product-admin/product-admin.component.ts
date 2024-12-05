@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../../service/product.service';
 import { CategoryService } from '../../../service/category.service';
 import { Category } from '../../../Models/category';
+import { CategoryDTO } from '../../../DTOs/category/category.DTO';
 
 @Component({
   selector: 'app-product-admin',
@@ -12,6 +13,9 @@ export class ProductAdminComponent implements OnInit {
   selectedFile: File | null = null;
   selectedFileUrl: string | ArrayBuffer | null = null;
   categories: Category[] = [];
+  category: CategoryDTO = {
+    name: ''
+  };
   product: {
     name: string;
     price: number; 
@@ -45,7 +49,16 @@ export class ProductAdminComponent implements OnInit {
   }
 
   addCategory() {
-    console.log('Add category');
+    this.categoryService.addCategory(this.category!).subscribe({
+      next: (response: any) => {
+        console.log(response);
+      },
+      complete: () => {
+      },
+      error: (err: any) => {
+        console.error('Error adding category: ', err);
+      }
+    })
   }
 
   onFileSelected(event: Event) {

@@ -124,3 +124,35 @@
     background-color: rgb(243, 165, 42);
     margin: 20px;
 }
+
+.social-login-button {
+    display: flex; /* Sử dụng Flexbox để căn chỉnh ngang */
+    justify-content: space-between; /* Chia đều không gian giữa các nút */
+    gap: 10px; /* Khoảng cách giữa các nút */
+}
+
+.social-button {
+    flex: 1; /* Làm cho các nút có chiều rộng bằng nhau */
+    padding: 10px; /* Thêm padding cho nút */
+    border-radius: 30px; /* Bo tròn các góc */
+    color: white; /* Màu chữ trắng */
+    border: none; /* Bỏ viền */
+    font-size: 16px; /* Kích thước chữ */
+    cursor: pointer; /* Con trỏ chuột thay đổi khi hover */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Căn giữa nội dung trong nút */
+}
+
+.google-button {
+    background-color: #4285F4; /* Màu nền của nút Google */
+}
+
+.facebook-button {
+    background-color: #3b5998; /* Màu nền của nút Facebook */
+}
+
+.social-button:hover {
+    opacity: 0.8; /* Hiệu ứng hover */
+}
+

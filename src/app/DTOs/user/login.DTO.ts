@@ -2,11 +2,15 @@ import{
     IsString,
     IsNotEmpty,
     IsPhoneNumber,
+    IsEmail
 } from 'class-validator'
 
 export class LoginDTO{
     @IsPhoneNumber()
     phone_number: string;
+
+    @IsEmail()
+    email: string
 
     @IsString()
     @IsNotEmpty()
@@ -17,6 +21,7 @@ export class LoginDTO{
 
     constructor(data: any){
         this.phone_number = data.phone_number;
+        this.email = data.email;
         this.password = data.password;
         this.role_id = data.role_id;
     }
