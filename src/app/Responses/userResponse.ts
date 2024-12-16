@@ -4,7 +4,7 @@ export interface UserResponse {
     id: number
     address: string
     active: boolean
-    fullname: string
+    full_name: string
     date_of_birth: Date
     phone_number: string
     facebook_account_id: number

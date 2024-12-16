@@ -12,7 +12,7 @@
                             [(ngModel)]="subject"
                             name="phone"
                             (focus)="loginForm.form.markAllAsTouched()"
-                            id="email" placeholder="Nhập vào số điện thoại hoặc email">
+                            id="email" placeholder="Nhập vào số điện thoại">
                         <div class="divider-nospace"></div>
                         <p class="text-danger" *ngIf="subject.length < 10 && loginForm.form.touched"> 
                             Tài khoản không hợp lệ !!</p>

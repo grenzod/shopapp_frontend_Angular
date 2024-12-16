@@ -1,0 +1,83 @@
+.container {
+    background-color: #f9f9f9;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.intro-section h1 {
+    font-size: 2.5rem;
+    color: #784caf;
+}
+
+.search-box {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.search-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.search-button {
+    background-color: #4CAF50;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.table th,
+.table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.badge.bg-success {
+    background-color: #28a745;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.badge.bg-secondary {
+    background-color: #6c757d;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #4c8eaf;
+    border-color: #4CAF50;
+    color: white;
+}
+
+.pagination .page-item .page-link {
+    color: #333;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 0 5px;
+    transition: background-color 0.3s ease;
+}
+
+.pagination .page-item .page-link:hover {
+    background-color: #f0f0f0;
+}

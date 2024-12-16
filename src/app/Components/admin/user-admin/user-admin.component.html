@@ -1,1 +1,67 @@
-<p>user-admin works!</p>
+<div class="container mt-5">
+    <div class="intro-section text-center mb-4">
+        <h1 class="text-primary">Quản lý người dùng</h1>
+        <p class="text-muted">Quản lý thông tin và trạng thái tài khoản người dùng</p>
+    </div>
+
+    <div class="search-box mb-4">
+        <input 
+            type="text" 
+            [(ngModel)]="keyword" 
+            name="keyword" 
+            class="form-control search-input" 
+            placeholder="Nhập vào thông tin người dùng muốn tìm kiếm">
+        <button class="btn btn-primary search-button" (click)="onSearchUsers()">Tìm kiếm</button>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Người dùng</th>
+                    <th scope="col">Địa chỉ</th>
+                    <th scope="col">Số điện thoại</th>
+                    <th scope="col">Ngày sinh</th>
+                    <th scope="col">Trạng thái tài khoản</th>
+                    <th scope="col">Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngFor="let user of users">
+                    <tr>
+                        <td>{{ user.full_name }}</td>
+                        <td>{{ user.address }}</td>
+                        <td>{{ user.phone_number }}</td>
+                        <td>{{ user.date_of_birth }}</td>
+                        <td>
+                            <span class="badge" [ngClass]="user.active ? 'bg-success' : 'bg-secondary'">
+                                {{ user.active ? 'Hoạt động' : 'Không hoạt động' }}
+                            </span>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger btn-sm" (click)="deleteUser(user.id)">Xóa</button>
+                        </td>
+                    </tr>
+                </ng-container>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="pagination-container mt-4">
+        <nav>
+            <ul class="pagination justify-content-center">
+                <li class="page-item" *ngIf="currentPage > 0">
+                    <a class="page-link" (click)="onPageChange(currentPage - 1)">Trước</a>
+                </li>
+                <ng-container *ngFor="let page of visiblePage">
+                    <li class="page-item" [ngClass]="{ 'active': page === currentPage }">
+                        <a class="page-link" (click)="onPageChange(page)">{{ page + 1 }}</a>
+                    </li>
+                </ng-container>
+                <li class="page-item" *ngIf="currentPage < totalPages - 1">
+                    <a class="page-link" (click)="onPageChange(currentPage + 1)">Tiếp</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>

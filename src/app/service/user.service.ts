@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RegisterDTO } from '../DTOs/user/register.DTO';
@@ -72,4 +72,16 @@ export class UserService {
       console.error("Have error when remove userResponse: ", error);
     }
    }
+
+   getUsers(keyword: string, page: number, limit: number): Observable<UserResponse[]> {
+    const params = new HttpParams()
+      .set('keyword', keyword)
+      .set('page', page.toString())
+      .set('limit', limit.toString());
+    return this.http.get<UserResponse[]>(this.apiUrl, { params });
+  }
+
+  deleteUser(userId: number): Observable<UserResponse> {
+    return this.http.delete<UserResponse>(`${this.apiUrl}/delete/${userId}`);
+  }
 }

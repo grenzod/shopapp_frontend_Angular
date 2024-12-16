@@ -10,12 +10,12 @@ import { UserService } from '../../service/user.service';
 
 @Component({
   selector: 'app-auth-callback',
-  template: '<div>Đang xử lý đăng nhập...</div>', // Thêm loading indicator
+  template: '<div>Đang xử lý đăng nhập...</div>', 
   standalone: true
 })
 export class AuthCallbackComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
-  private processed = false; // Flag để track việc xử lý
+  private processed = false; 
   processedUserResponse?: UserResponse;
   constructor(
     private router: Router,
@@ -26,7 +26,6 @@ export class AuthCallbackComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    // Kiểm tra nếu đã xử lý
     if (this.processed) {
       return;
     }
@@ -54,7 +53,6 @@ export class AuthCallbackComponent implements OnInit, OnDestroy {
       return;
     }
 
-    // Đánh dấu đã xử lý
     this.processed = true;
 
     this.authService.exchangeCodeForToken(code, loginType).pipe(
