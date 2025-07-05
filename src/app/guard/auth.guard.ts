@@ -1,20 +1,29 @@
 import { inject, Injectable } from "@angular/core";
 import { TokenService } from "../service/token.service";
 import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot } from "@angular/router";
+import { UserService } from "../service/user.service";
+import { CartService } from "../service/cart.service";
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthGuard {
-    constructor(private tokenServe: TokenService, private router: Router) { }
+    constructor(private tokenService: TokenService, 
+                private router: Router,
+                private userService: UserService,
+                private cartService: CartService) { }
 
     canActivate() {
-        const isExpired = this.tokenServe.isTokenExpried();
-        const isUserIdValid = this.tokenServe.getUserId();
+        const isExpired = this.tokenService.isTokenExpried();
+        const isUserIdValid = this.tokenService.getUserId();
 
         if (!isExpired && isUserIdValid) {
             return true;
         } else {
+            this.userService.removeUserFromLocalStorage();
+            this.cartService.clearCart();
+            this.tokenService.removeToken();
+            this.tokenService.logout();
             alert('Làm ơn đăng nhập !!');
             this.router.navigate(['/login']);
             return false;

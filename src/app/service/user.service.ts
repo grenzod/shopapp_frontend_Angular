@@ -18,7 +18,7 @@ export class UserService {
   private createHeaders():HttpHeaders{
     return new HttpHeaders({
       'Content-Type': 'application/json',
-      'Accept-Language': 'vi'
+      'Accept-Language': 'vi',
     });
   }
    register(registerData: RegisterDTO):Observable<any>{
@@ -26,7 +26,7 @@ export class UserService {
    }
 
    login(loginData: LoginDTO):Observable<any>{
-    return this.http.post(this.apiUrl + "/login", loginData, {headers:this.createHeaders()});
+    return this.http.post(this.apiUrl + "/login", loginData, {headers:this.createHeaders().append('X-User-Agent', 'web')});
    }
 
    getUserDetail(token: string):Observable<any>{

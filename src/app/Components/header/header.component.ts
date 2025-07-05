@@ -54,6 +54,7 @@ export class HeaderComponent implements OnInit {
       this.userService.removeUserFromLocalStorage();
       this.cartService.clearCart();
       this.tokenService.removeToken();
+      this.tokenService.logout();
       window.location.reload();
     }
     this.isPopoverOpen = false;

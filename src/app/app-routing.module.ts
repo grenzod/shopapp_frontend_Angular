@@ -13,6 +13,7 @@ import { OrderAdminComponent } from './Components/admin/order-admin/order-admin.
 import { AuthCallbackComponent } from './Components/auth-callback/auth-callback.component';
 import { ProductAdminComponent } from './Components/admin/product-admin/product-admin.component';
 import { UserAdminComponent } from './Components/admin/user-admin/user-admin.component';
+import { VNPayComponent } from './Components/vnpay/vnpay.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'orders/:id', component: OrderConfirmComponent, canActivate: [AuthGuardProvider] },
   { path: 'auth/google/callback', component: AuthCallbackComponent },
   { path: 'auth/facebook/callback', component: AuthCallbackComponent },
+  { path: 'user/VNPay', component: VNPayComponent, canActivate: [AuthGuardProvider]},
   
   // Admin
   { path: 'admin', component: AdminComponent, canActivate: [AdminGuardProvider] },

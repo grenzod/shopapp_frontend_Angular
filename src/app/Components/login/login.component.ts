@@ -63,8 +63,7 @@ export class LoginComponent implements OnInit {
     const loginData: LoginDTO = {
       phone_number: phone,
       email: email,
-      password: this.password,
-      role_id: this.selectedRole?.id ?? 1,
+      password: this.password
     };
 
     this.userService.login(loginData).subscribe({
@@ -98,7 +97,7 @@ export class LoginComponent implements OnInit {
       },
       error: (err: any) => {
         debugger
-        alert(`Can not login, error: ${err.error}`);
+        window.alert(`Can not login, error: ${err.error}`);
       }
     });
   }

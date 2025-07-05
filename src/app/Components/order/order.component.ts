@@ -8,6 +8,7 @@ import { OrderService } from '../../service/order.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TokenService } from '../../service/token.service';
 import { Router } from '@angular/router';
+import { VNPayService } from '../../service/vnpay.service';
 
 @Component({
   selector: 'app-order',
@@ -17,8 +18,8 @@ import { Router } from '@angular/router';
 export class OrderComponent {
   orderForm: FormGroup;
   cartItems: { product: Product, quantity: number }[] = [];
-  couponCode:string = '';
-  totalAmount:number = 0;
+  couponCode: string = '';
+  totalAmount: number = 0;
   orderData: OrderDTO = {
     user_id: 0,
     fullname: '',
@@ -30,27 +31,28 @@ export class OrderComponent {
     payment_method: 'cod',
     shipping_method: 'express',
     coupon_code: '',
-    cart_items: []
+    cart_items: [],
   };
 
-  constructor(    
+  constructor(
     private productService: ProductService,
     private cartService: CartService,
     private orderService: OrderService,
     private fb: FormBuilder,
     private tokenServe: TokenService,
-    private router: Router
+    private router: Router,
+    private vnpayService: VNPayService
   ) {
     this.orderForm = this.fb.group({
       fullname: ['', Validators.required],
       email: ['', [Validators.email]],
-      phone_number: ['', [Validators.required, Validators.minLength(10)]], 
+      phone_number: ['', [Validators.required, Validators.minLength(10)]],
       address: ['', Validators.required],
       note: [''],
       shipping_method: ['express'],
       payment_method: ['cod'],
       coupon_code: ''
-    });    
+    });
   }
 
   ngOnInit(): void {
@@ -59,9 +61,9 @@ export class OrderComponent {
     const cart = this.cartService.getCart();
     const productIds = Array.from(cart.keys());
     if (productIds.length === 0) {
-      return; 
+      return;
     }
-  
+
     this.productService.getProductsByIds(productIds).subscribe({
       next: (products) => {
         this.cartItems = productIds.map((productId) => {
@@ -83,10 +85,11 @@ export class OrderComponent {
         console.error('Error getting products: ', err);
       }
     });
+    this.calculateTotalAmount();
   }
-  
-  placeOrder(){
-    if(this.orderForm.valid){
+
+  placeOrder() {
+    if (this.orderForm.valid) {
       this.orderData = {
         ...this.orderData,
         ...this.orderForm.value
@@ -95,26 +98,41 @@ export class OrderComponent {
         product_id: cartItem.product.id,
         quantity: cartItem.quantity
       }));
+      this.orderData.total_money = this.totalAmount;
       //set gia tri cua orderForm cho orderData VD:orderData.fullname = orderForm.get('fullname)!.value
 
-      this.orderService.placeOrder(this.orderData).subscribe({
-        next: (response: any) => {
-          debugger;
-          alert('Đặt hàng thành công !!');
-          this.cartService.clearCart();
-          this.router.navigate(['']);
-        },
-        complete: () => {
-          debugger;
-          this.calculateTotalAmount();
-        },
-        error: (err: any) => {
-          debugger
-          console.error('Error getting : ', err);
-        }
-      });
+      if (this.orderData.payment_method.toLowerCase() === 'online') {
+        this.vnpayService.getVNPayUrl(this.orderData).subscribe({
+          next: (response: any) => {
+            debugger;
+            window.location.href = response.data.paymentUrl;
+          },
+          error: (err: any) => {
+            debugger;
+            console.error('Error getting : ', err);
+          }
+        });
+      }
+      else {
+        this.orderService.placeOrder(this.orderData).subscribe({
+          next: (response: any) => {
+            debugger;
+            window.alert('Đặt hàng thành công !!');
+            this.cartService.clearCart();
+            this.router.navigate(['']);
+          },
+          // complete: () => {
+          //   debugger;
+          //   this.calculateTotalAmount();
+          // },
+          error: (err: any) => {
+            debugger
+            console.error('Error getting : ', err);
+          }
+        });
+      }
     }
-    else{
+    else {
       window.alert('Bạn không được nhập thiếu thông tin');
     }
   }
@@ -122,7 +140,7 @@ export class OrderComponent {
   calculateTotalAmount() {
     this.totalAmount = 0;
     this.cartItems.forEach(item => {
-      this.totalAmount += item.product.price * item.quantity;
+      this.totalAmount += item.product.price * item.quantity * 10000;
     });
   }
 

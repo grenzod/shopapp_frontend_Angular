@@ -21,6 +21,7 @@ import { OrderAdminComponent } from './Components/admin/order-admin/order-admin.
 import { ProductAdminComponent } from './Components/admin/product-admin/product-admin.component';
 import { UserAdminComponent } from './Components/admin/user-admin/user-admin.component';
 import { AuthCallbackComponent } from './Components/auth-callback/auth-callback.component';
+import { VNPayComponent } from './Components/vnpay/vnpay.component';
 
 @NgModule({
   declarations: [ 
@@ -36,7 +37,9 @@ import { AuthCallbackComponent } from './Components/auth-callback/auth-callback.
     AdminComponent,
     OrderAdminComponent,
     ProductAdminComponent,
-    UserAdminComponent
+    UserAdminComponent,
+    AuthCallbackComponent, 
+    VNPayComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +48,6 @@ import { AuthCallbackComponent } from './Components/auth-callback/auth-callback.
     // HttpClientModule,
     ReactiveFormsModule,
     NgbPopoverModule,
-    AuthCallbackComponent 
   ],
   providers: [
     provideClientHydration(),

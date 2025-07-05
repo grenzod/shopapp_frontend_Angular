@@ -11,7 +11,9 @@ import { UserService } from '../../service/user.service';
 @Component({
   selector: 'app-auth-callback',
   template: '<div>Đang xử lý đăng nhập...</div>', 
-  standalone: true
+  styleUrls: ['./auth-callback.component.scss']
+  // styles: ['./auth-callback.component.scss'],
+  // standalone: true
 })
 export class AuthCallbackComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
